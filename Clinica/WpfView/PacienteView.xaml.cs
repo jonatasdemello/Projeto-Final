@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Controles;
+using Modelos;
 
 namespace WpfView
 {
@@ -22,6 +24,17 @@ namespace WpfView
         public PacienteView()
         {
             InitializeComponent();
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            PacienteController pacienteController = new PacienteController();
+            dgPacientes.ItemsSource = pacienteController.readPacientes();
+        }
+
+        private void dgPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid dg = ((DataGrid)sender);
+            Consulta pac = (Consulta)dg.Items[dg.SelectedIndex];
         }
     }
 }
