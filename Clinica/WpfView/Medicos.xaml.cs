@@ -11,17 +11,30 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Controles;
+using Modelos;
 
 namespace WpfView
 {
     /// <summary>
-    /// Lógica interna para Medicos.xaml
+    /// Interaction logic for ListaMedicos.xaml
     /// </summary>
     public partial class Medicos : Window
     {
         public Medicos()
         {
             InitializeComponent();
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            MedicoController medicoController = new MedicoController();
+            dgMedicos.ItemsSource = medicoController.readMedicos();
+        }
+
+        private void dgMedicos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid dg = ((DataGrid)sender);
+            Medico med = (Medico)dg.Items[dg.SelectedIndex];
         }
     }
 }

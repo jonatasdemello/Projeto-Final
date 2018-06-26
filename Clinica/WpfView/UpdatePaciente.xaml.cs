@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WpfView
 {
     /// <summary>
-    /// Lógica interna para UpdateConsulta.xaml
+    /// Interaction logic for UpdatePaciente.xaml
     /// </summary>
-    public partial class UpdateConsulta : Window
+    public partial class UpdatePaciente : Window
     {
-        public UpdateConsulta()
+        public UpdatePaciente()
         {
             InitializeComponent();
         }

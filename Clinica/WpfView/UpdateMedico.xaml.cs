@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace WpfView
 {
     /// <summary>
-    /// Lógica interna para UpdateConsulta.xaml
+    /// Interaction logic for UpdateMedico.xaml
     /// </summary>
-    public partial class UpdateConsulta : Window
+    public partial class UpdateMedico : Window
     {
-        public UpdateConsulta()
+        public UpdateMedico()
         {
             InitializeComponent();
         }

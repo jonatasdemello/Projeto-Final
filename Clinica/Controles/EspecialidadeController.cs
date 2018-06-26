@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Modelos;
 
 namespace Controles
 {
-    class EspecialidadeController
+    public class EspecialidadeController
     {
-        Modelos.HospitalContext ctx = new Modelos.HospitalContext();
+        HospitalContext ctx = new HospitalContext();
 
         public void createEspecialidade(String nome, float valor)
         {
-            Modelos.Especialidade esp = new Modelos.Especialidade();
+            Especialidade esp = new Especialidade();
             esp.Nome = nome;
             esp.Valor = valor;
 
@@ -27,16 +28,16 @@ namespace Controles
             this.createEspecialidade("Endocrino", 5000);
         }
 
-        public IList<Modelos.Especialidade> readEspecialidades()
+        public IList<Especialidade> readEspecialidades()
         {
             var especialidades = from especialidade in ctx.Especialidades select especialidade;
             return especialidades.ToList();
         }
 
-        public Modelos.Especialidade getEspecialidade(int index)
+        public Especialidade getEspecialidade(int index)
         {
             var especialidades = from especialidade in ctx.Especialidades where especialidade.Id == index select especialidade;
-            return (Modelos.Especialidade)especialidades;
+            return (Especialidade)especialidades;
         }
 
     }

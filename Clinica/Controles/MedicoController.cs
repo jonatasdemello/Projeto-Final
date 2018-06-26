@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Modelos;
 
 namespace Controles
 {
     public class MedicoController
     {
-        Modelos.HospitalContext ctx = new Modelos.HospitalContext();
+        private HospitalContext ctx = new HospitalContext();
 
-        public void createMedico(String nome, DateTime nasc, String fone, String cpf, Modelos.Conta conta, string crm, Modelos.Especialidade especialidade, String turno)
+        public void createMedico(String nome, DateTime nasc, String fone, String cpf, Conta conta, string crm, Especialidade especialidade, String turno)
         {
-            Modelos.Medico m = new Modelos.Medico();
+            Medico m = new Medico();
             m.Nome = nome;
             m.Nascimento = nasc;
             m.Telefone = fone;
@@ -26,7 +27,7 @@ namespace Controles
             ctx.SaveChanges();
         }
 
-        public void deleteMedico(Modelos.Medico medico)
+        public void deleteMedico(Medico medico)
         {
             if (medico.MedicoId != 0)
             {
@@ -35,13 +36,13 @@ namespace Controles
             }
         }
 
-        public IList<Modelos.Medico> readMedicos()
+        public IList<Medico> readMedicos()
         {
             var medicos = from medico in ctx.Medicos select medico;
             return medicos.ToList();
         }
 
-        public void updateMedico(Modelos.Medico medico)
+        public void updateMedico(Medico medico)
         {
             var tempMedico = ctx.Medicos.SingleOrDefault(c => c.MedicoId == medico.MedicoId);
             tempMedico.Nome = medico.Nome;

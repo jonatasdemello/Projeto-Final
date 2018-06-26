@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="NewConsulta" Height="450" Width="800">
     <Grid>
-        
+        <Label Content="Médico" HorizontalAlignment="Left" Margin="55,38,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="55,64,0,0" VerticalAlignment="Top" Width="178"/>
+        <Label Content="Paciente" HorizontalAlignment="Left" Margin="55,89,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="55,115,0,0" VerticalAlignment="Top" Width="178"/>
+        <Label Content="Secretária" HorizontalAlignment="Left" Margin="55,138,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="55,164,0,0" VerticalAlignment="Top" Width="178"/>
+        <Label Content="Data da Consulta" HorizontalAlignment="Left" Margin="55,186,0,0" VerticalAlignment="Top"/>
+        <DatePicker HorizontalAlignment="Left" Margin="55,212,0,0" VerticalAlignment="Top" Width="178"/>
+        <Button x:Name="btnOk" Content="Ok" HorizontalAlignment="Left" Margin="55,247,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="158,247,0,0" VerticalAlignment="Top" Width="75"/>
+
     </Grid>
 </Window>

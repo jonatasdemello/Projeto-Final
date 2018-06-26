@@ -61,8 +61,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Medicos.xaml.cs">
+      <DependentUpon>Medicos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewMedico.xaml.cs">
+      <DependentUpon>NewMedico.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewPaciente.xaml.cs">
+      <DependentUpon>NewPaciente.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateConsulta.xaml.cs">
       <DependentUpon>UpdateConsulta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateMedico.xaml.cs">
+      <DependentUpon>UpdateMedico.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UpdatePaciente.xaml.cs">
+      <DependentUpon>UpdatePaciente.xaml</DependentUpon>
     </Compile>
     <Page Include="Consultas.xaml">
       <SubType>Designer</SubType>
@@ -79,7 +97,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NewConsulta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewMedico.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewPaciente.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -91,11 +121,16 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UpdateMedico.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdatePaciente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Medicos.xaml.cs">
-      <DependentUpon>Medicos.xaml</DependentUpon>
-    </Compile>
     <Compile Include="NewConsulta.xaml.cs">
       <DependentUpon>NewConsulta.xaml</DependentUpon>
     </Compile>
@@ -119,14 +154,28 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Controles\Controles.csproj">
+      <Project>{08e90c70-e0d1-4c90-906c-f220fe1a90e7}</Project>
+      <Name>Controles</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modelos\Modelos.csproj">
+      <Project>{db88b844-1255-40ec-a24c-6c4e35937e1e}</Project>
+      <Name>Modelos</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

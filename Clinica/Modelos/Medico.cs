@@ -17,8 +17,5 @@ namespace Modelos
 
         public String CRM { get; set; }
         public Especialidade Especialidade { get; set; }
-
-        
     }
-
 }

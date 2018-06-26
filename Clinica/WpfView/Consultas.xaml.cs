@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Controles;
+using Modelos;
 
 namespace WpfView
 {
@@ -22,6 +24,17 @@ namespace WpfView
         public Consultas()
         {
             InitializeComponent();
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            ConsultaController ConsultaController = new Controles.ConsultaController();
+            dgConsultas.ItemsSource = ConsultaController.readConsulta();
+        }
+
+        private void dgConsultas_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid dg = ((DataGrid)sender);
+            Consulta med = (Consulta)dg.Items[dg.SelectedIndex];
         }
     }
 }

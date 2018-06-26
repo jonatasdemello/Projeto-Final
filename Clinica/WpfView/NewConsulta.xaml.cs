@@ -23,5 +23,28 @@ namespace WpfView
         {
             InitializeComponent();
         }
+        private void btnSalvar_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                //Usuario usu = new Usuario();
+
+                //usu.Nome = txtNome.Text;
+
+                //UsuariosController usuariosController = new UsuariosController();
+                //usuariosController.Adicionar(usu);
+
+                MessageBox.Show("Usuário salvo com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao salvar o usuário (" + ex.Message + ")");
+            }
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

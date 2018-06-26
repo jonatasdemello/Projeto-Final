@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Modelos;
 
 namespace Controles
 {
     public class ConvenioController
     {
-        Modelos.HospitalContext ctx = new Modelos.HospitalContext();
+        HospitalContext ctx = new HospitalContext();
 
         public void createConvenio(String nome, String empresa, String telefone)
         {
-            Modelos.Convenio c = new Modelos.Convenio();
+            Convenio c = new Convenio();
             c.Nome = nome;
             c.Empresa = empresa;
             c.Telefone = telefone;
@@ -27,7 +28,7 @@ namespace Controles
             this.createConvenio("Amil Standard", "Amil", "234567");
         }
 
-        public IList<Modelos.Convenio> readConvenios()
+        public IList<Convenio> readConvenios()
         {
             var convenios = from convenio in ctx.Convenios select convenio;
             return convenios.ToList();

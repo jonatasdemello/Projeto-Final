@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Modelos;
 
 namespace Controles
 {
     public class ContaController
     {
-        Modelos.HospitalContext ctx = new Modelos.HospitalContext(); 
+        HospitalContext ctx = new HospitalContext(); 
         
         public void createConta(String banco, String cc, int agencia)
         {
-            Modelos.Conta c = new Modelos.Conta();
+            Conta c = new Conta();
             c.Banco = banco;
             c.ContaCorrente = cc;
             c.Agencia = agencia;
@@ -29,7 +30,7 @@ namespace Controles
             this.createConta("Itaú", "4567", 4);
         }
 
-        public IList<Modelos.Conta> readContas()
+        public IList<Conta> readContas()
         {
             var contas = from conta in ctx.Contas select conta;
             return contas.ToList();

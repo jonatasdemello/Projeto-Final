@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Modelos;
 
 namespace Controles
 {
-    class SecretariaController
+    public class SecretariaController
     {
-        Modelos.HospitalContext ctx = new Modelos.HospitalContext();
+        HospitalContext ctx = new HospitalContext();
 
         public void createSecretaria(String nome, String cpf, DateTime nascimento, String telefone, String turno)
         {
-            Modelos.Secretaria s = new Modelos.Secretaria();
+            Secretaria s = new Secretaria();
             s.Nome = nome;
             s.CPF = cpf;
             s.Nascimento = nascimento;
@@ -30,7 +31,7 @@ namespace Controles
             this.createSecretaria("Antonieta", "333333", DateTime.Now, "4444444", "Noturno");
         }
 
-        public IList<Modelos.Secretaria> readSecretaria()
+        public IList<Secretaria> readSecretaria()
         {
             var secretarias = from secretaria in ctx.Secretarias select secretaria;
             return secretarias.ToList();
