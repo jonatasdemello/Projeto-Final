@@ -34,7 +34,7 @@ namespace WpfView
         private void dgPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGrid dg = ((DataGrid)sender);
-            Consulta pac = (Consulta)dg.Items[dg.SelectedIndex];
+            Paciente pac = (Paciente)dg.Items[dg.SelectedIndex];
         }
     }
 }

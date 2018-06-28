@@ -19,16 +19,33 @@
         <Label Content="Turno" HorizontalAlignment="Left" Margin="40,134,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.477,-0.808"/>
         <TextBox x:Name="txtTurno" HorizontalAlignment="Left" Height="22" Margin="40,160,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="178"/>
         <Label Content="Conta" HorizontalAlignment="Left" Margin="40,190,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cbConta" HorizontalAlignment="Left" Margin="40,216,0,0" VerticalAlignment="Top" Width="120" 
-                  SelectedValuePath="Id"
-                  DisplayMemberPath="Banco" />
+        
+        <ComboBox x:Name="cbConta" HorizontalAlignment="Left" Margin="40,216,0,0" VerticalAlignment="Top" Width="404" IsEditable="False" Height="25"
+                  SelectedValuePath="Id" >
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{} Banco: {0} Agencia: {1}  Conta: {2}">
+                                <Binding Path="Banco"/>
+                                <Binding Path="Agencia"/>
+                                <Binding Path="ContaCorrente"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
         <Label Content="Especialidade" HorizontalAlignment="Left" Margin="40,240,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cbEspecialidade" HorizontalAlignment="Left" Margin="40,266,0,0" VerticalAlignment="Top" Width="120"
                   SelectedValuePath="Id"
                   DisplayMemberPath="Nome"/>
         <Label Content="Data de Nascimento" HorizontalAlignment="Left" Margin="40,293,0,0" VerticalAlignment="Top"/>
+        
+        <DatePicker x:Name="dpDataNascimento" HorizontalAlignment="Left" Margin="40,319,0,0" VerticalAlignment="Top"/>
+        
         <Button x:Name="btnOk" Content="OK" HorizontalAlignment="Left" Margin="40,364,0,0" VerticalAlignment="Top" Width="75" Click="btnSalvar_Click"/>
         <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="143,364,0,0" VerticalAlignment="Top" Width="75" Click="btnCancelar_Click"/>
-        <DatePicker x:Name="dpDataNascimento" HorizontalAlignment="Left" Margin="40,319,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

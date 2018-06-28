@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Modelos;
+using Controles;
 
 namespace WpfView
 {
@@ -23,23 +25,49 @@ namespace WpfView
         {
             InitializeComponent();
         }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // preencher dropdown medico
+            MedicoController medicoController = new MedicoController();
+            cbMedico.ItemsSource = medicoController.readMedicos();
+
+            // preencher dropdown paciente
+            PacienteController pacienteController = new PacienteController();
+            cbPaciente.ItemsSource = pacienteController.readPacientes();
+
+            // preencher dropdown secretaria
+            SecretariaController secretariaController = new SecretariaController();
+            cbSecretaria.ItemsSource = secretariaController.readSecretaria();
+        }
+
         private void btnSalvar_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                //Usuario usu = new Usuario();
+                if (dpConsulta.SelectedDate == null)
+                {
+                    MessageBox.Show("Informe a data da consulta!");
+                }
+                else
+                {
+                    Consulta consulta = new Consulta();
 
-                //usu.Nome = txtNome.Text;
+                    consulta.Medico = (Medico)cbMedico.SelectedItem;
+                    consulta.Paciente = (Paciente)cbPaciente.SelectedItem;
+                    consulta.Secretaria = (Secretaria)cbSecretaria.SelectedItem;
+                    consulta.Hora = (DateTime)dpConsulta.SelectedDate;
+                    
+                    ConsultaController consultaController = new ConsultaController();
+                    consultaController.createConsulta(consulta);
 
-                //UsuariosController usuariosController = new UsuariosController();
-                //usuariosController.Adicionar(usu);
-
-                MessageBox.Show("Usuário salvo com sucesso!");
+                    MessageBox.Show("Consulta salva com sucesso!");
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao salvar o usuário (" + ex.Message + ")");
             }
+            this.Close();
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)

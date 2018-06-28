@@ -29,13 +29,11 @@ namespace WpfView
         {
             // preencher dropdown contas
             ContaController contas = new ContaController();
-            var ct = contas.readContas();
-            cbConta.ItemsSource = ct;
+            cbConta.ItemsSource = contas.readContas();
 
             // preencher dropdown especialidades
             EspecialidadeController especialidade = new EspecialidadeController();
-            var es = especialidade.readEspecialidades();
-            cbEspecialidade.ItemsSource = es;
+            cbEspecialidade.ItemsSource = especialidade.readEspecialidades();
         }
 
         private void btnSalvar_Click(object sender, RoutedEventArgs e)
@@ -50,13 +48,13 @@ namespace WpfView
                 {
                     Medico medico = new Medico();
                     medico.Nome = txtNome.Text;
-                    medico.Nascimento = (DateTime)dpDataNascimento.SelectedDate;
-                    medico.Telefone = txtTelefone.Text;
-                    medico.CPF = txtCPF.Text;
-                    medico.conta = (Conta)cbConta.SelectedItem;
                     medico.CRM = txtCRM.Text;
-                    medico.Especialidade = (Especialidade)cbEspecialidade.SelectedItem;
+                    medico.CPF = txtCPF.Text;
+                    medico.Telefone = txtTelefone.Text;
                     medico.Turno = txtTurno.Text;
+                    medico.Nascimento = (DateTime)dpDataNascimento.SelectedDate;
+                    medico.conta = (Conta)cbConta.SelectedItem;
+                    medico.Especialidade = (Especialidade)cbEspecialidade.SelectedItem;
 
                     MedicoController medicoController = new MedicoController();
                     medicoController.createMedico(medico);
