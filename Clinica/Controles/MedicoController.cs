@@ -11,6 +11,12 @@ namespace Controles
     {
         private HospitalContext ctx = new HospitalContext();
 
+        public void createMedico(Medico medico)
+        {
+            ctx.Medicos.Add(medico);
+            ctx.SaveChanges();
+        }
+
         public void createMedico(String nome, DateTime nasc, String fone, String cpf, Conta conta, string crm, Especialidade especialidade, String turno)
         {
             Medico m = new Medico();
