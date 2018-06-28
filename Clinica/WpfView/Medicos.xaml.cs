@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Controles;
 using Modelos;
@@ -17,7 +18,7 @@ using Modelos;
 namespace WpfView
 {
     /// <summary>
-    /// Interaction logic for ListaMedicos.xaml
+    /// Interação lógica para Medicos.xam
     /// </summary>
     public partial class Medicos : Window
     {

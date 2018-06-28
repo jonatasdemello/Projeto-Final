@@ -11,8 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Modelos;
 using Controles;
+using Modelos;
 
 namespace WpfView
 {
@@ -56,7 +56,7 @@ namespace WpfView
                     consulta.Paciente = (Paciente)cbPaciente.SelectedItem;
                     consulta.Secretaria = (Secretaria)cbSecretaria.SelectedItem;
                     consulta.Hora = (DateTime)dpConsulta.SelectedDate;
-                    
+
                     ConsultaController consultaController = new ConsultaController();
                     consultaController.createConsulta(consulta);
 

@@ -10,7 +10,10 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Controles;
+using Modelos;
 
 namespace WpfView
 {
@@ -24,16 +27,22 @@ namespace WpfView
             InitializeComponent();
         }
 
-        private void btnNewMedico_Click(object sender, RoutedEventArgs e)
-        {
-            NewMedico newMedico = new NewMedico();
-            newMedico.ShowDialog();
-        }
         private void btnMedicos_Click(object sender, RoutedEventArgs e)
         {
             Medicos medicos = new Medicos();
             medicos.ShowDialog();
         }
+        private void btnNewMedico_Click(object sender, RoutedEventArgs e)
+        {
+            NewMedico newMedico = new NewMedico();
+            newMedico.ShowDialog();
+        }
+        private void btnUpdateMedico_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateMedico medico = new UpdateMedico();
+            medico.ShowDialog();
+        }
+
         private void btnConsultas_Click(object sender, RoutedEventArgs e)
         {
             Consultas consultas = new Consultas();
@@ -44,6 +53,12 @@ namespace WpfView
             NewConsulta consulta = new NewConsulta();
             consulta.ShowDialog();
         }
+        private void btnUpdateConsulta_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateConsulta consulta = new UpdateConsulta();
+            consulta.ShowDialog();
+        }
+
         private void btnPaciente_Click(object sender, RoutedEventArgs e)
         {
             PacienteView paciente = new PacienteView();
@@ -52,6 +67,11 @@ namespace WpfView
         private void btnNewPaciente_Click(object sender, RoutedEventArgs e)
         {
             NewPaciente paciente = new NewPaciente();
+            paciente.ShowDialog();
+        }
+        private void btnUpdatePaciente_Click(object sender, RoutedEventArgs e)
+        {
+            UpdatePaciente paciente = new UpdatePaciente();
             paciente.ShowDialog();
         }
     }

@@ -11,8 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Modelos;
 using Controles;
+using Modelos;
 
 namespace WpfView
 {
@@ -40,33 +40,44 @@ namespace WpfView
         {
             try
             {
+                // validar
+                if (string.IsNullOrEmpty(txtNome.Text))
+                    throw new NullReferenceException("O campo nome é obrigatório.");
+                if (string.IsNullOrEmpty(txtCRM.Text))
+                    throw new NullReferenceException("O campo CRM é obrigatório.");
+                if (string.IsNullOrEmpty(txtCPF.Text))
+                    throw new NullReferenceException("O campo CPF é obrigatório.");
+                if (string.IsNullOrEmpty(txtTelefone.Text))
+                    throw new NullReferenceException("O campo Telefone é obrigatório.");
+                if (string.IsNullOrEmpty(txtTurno.Text))
+                    throw new NullReferenceException("O campo Turno é obrigatório.");
+                if (cbConta.SelectedItem == null)
+                    throw new NullReferenceException("O campo Conta é obrigatório.");
+                if (cbEspecialidade.SelectedItem == null)
+                    throw new NullReferenceException("O campo Especialidade é obrigatório.");
                 if (dpDataNascimento.SelectedDate == null)
-                {
-                    MessageBox.Show("Informe a data de nascimento!");
-                }
-                else
-                {
-                    Medico medico = new Medico();
-                    medico.Nome = txtNome.Text;
-                    medico.CRM = txtCRM.Text;
-                    medico.CPF = txtCPF.Text;
-                    medico.Telefone = txtTelefone.Text;
-                    medico.Turno = txtTurno.Text;
-                    medico.Nascimento = (DateTime)dpDataNascimento.SelectedDate;
-                    medico.conta = (Conta)cbConta.SelectedItem;
-                    medico.Especialidade = (Especialidade)cbEspecialidade.SelectedItem;
+                    throw new NullReferenceException("A campo Data de Nascimento é obrigatório.");
 
-                    MedicoController medicoController = new MedicoController();
-                    medicoController.createMedico(medico);
+                Medico medico = new Medico();
+                medico.Nome = txtNome.Text;
+                medico.CRM = txtCRM.Text;
+                medico.CPF = txtCPF.Text;
+                medico.Telefone = txtTelefone.Text;
+                medico.Turno = txtTurno.Text;
+                medico.Nascimento = (DateTime)dpDataNascimento.SelectedDate;
+                medico.conta = (Conta)cbConta.SelectedItem;
+                medico.Especialidade = (Especialidade)cbEspecialidade.SelectedItem;
 
-                    MessageBox.Show("Usuário salvo com sucesso!");
-                }
+                MedicoController medicoController = new MedicoController();
+                medicoController.createMedico(medico);
+
+                MessageBox.Show("Usuário salvo com sucesso!");
+                this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao salvar o usuário (" + ex.Message + ")");
             }
-            this.Close();
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)

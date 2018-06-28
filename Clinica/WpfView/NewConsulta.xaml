@@ -24,7 +24,7 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-    
+
         <Label Content="Paciente" HorizontalAlignment="Left" Margin="55,89,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cbPaciente" HorizontalAlignment="Left" Margin="55,115,0,0" VerticalAlignment="Top" Width="351"
                   SelectedValuePath="PacienteId" >
@@ -58,7 +58,7 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        
+
         <Label Content="Data da Consulta" HorizontalAlignment="Left" Margin="55,186,0,0" VerticalAlignment="Top"/>
         <DatePicker x:Name="dpConsulta" HorizontalAlignment="Left" Margin="55,212,0,0" VerticalAlignment="Top" Width="178"/>
 
