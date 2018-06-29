@@ -27,7 +27,7 @@ namespace WpfView
 
             Load_Consulta(consultaId);
         }
-        private void Load_Consulta(int medicoId)
+        private void Load_Consulta(int consultaId)
         {
             // preencher dropdown medico
             MedicoController medicoController = new MedicoController();
@@ -41,16 +41,15 @@ namespace WpfView
             SecretariaController secretariaController = new SecretariaController();
             cbSecretaria.ItemsSource = secretariaController.readSecretaria();
 
-            //txtId.Text = medico.MedicoId.ToString();
-            //txtNome.Text = medico.Nome;
-            //txtCRM.Text = medico.CRM;
-            //txtCPF.Text = medico.CPF;
-            //txtTelefone.Text = medico.Telefone;
-            //txtTurno.Text = medico.Turno;
-            //dpDataNascimento.SelectedDate = medico.Nascimento;
+            ConsultaController consultaController = new ConsultaController();
 
-            //cbConta.SelectedItem = medico.conta;
-            //cbEspecialidade.SelectedItem = medico.Especialidade;
+            Consulta consulta = consultaController.readConsulta(consultaId);
+
+            txtId.Text = consulta.Id.ToString();
+            cbMedico.SelectedItem = consulta.Medico;
+            cbPaciente.SelectedItem = consulta.Paciente;
+            cbSecretaria.SelectedItem = consulta.Secretaria;
+            dpConsulta.SelectedDate = consulta.Hora;
         }
 
         private void btnSalvar_Click(object sender, RoutedEventArgs e)

@@ -44,10 +44,21 @@ namespace Controles
 
         public Medico readMedico(int medicoId)
         {
-            var tempMedico = from medico in ctx.Medicos
+            var tempMedico = (from medico in ctx.Medicos
                              where medico.MedicoId == medicoId
-                             select medico;
-            return tempMedico.SingleOrDefault();
+                             select medico).SingleOrDefault();
+
+            tempMedico.conta = (from conta in ctx.Contas
+                                join medico in ctx.Medicos on conta.Id equals medico.conta.Id
+                                where medico.MedicoId == medicoId
+                                select conta).SingleOrDefault();
+
+            tempMedico.Especialidade = (from especialidade in ctx.Especialidades
+                                        join medico in ctx.Medicos on especialidade.Id equals medico.Especialidade.Id
+                                        where medico.MedicoId == medicoId
+                                        select especialidade).SingleOrDefault();
+
+            return tempMedico;
         }
 
         public IList<Medico> readMedicos()

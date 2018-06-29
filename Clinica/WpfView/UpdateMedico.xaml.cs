@@ -50,8 +50,8 @@ namespace WpfView
             txtTurno.Text = medico.Turno;
             dpDataNascimento.SelectedDate = medico.Nascimento;
 
-            cbConta.SelectedItem = medico.conta;
-            cbEspecialidade.SelectedItem = medico.Especialidade;
+            cbConta.SelectedValue = medico.conta.Id;
+            cbEspecialidade.SelectedValue = medico.Especialidade.Id;
         }
 
         private void btnSalvar_Click(object sender, RoutedEventArgs e)

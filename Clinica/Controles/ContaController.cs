@@ -35,6 +35,14 @@ namespace Controles
             var contas = from conta in ctx.Contas select conta;
             return contas.ToList();
         }
+
+        public Conta readConta(int contaId)
+        {
+            var tmpConta = (from conta in ctx.Contas
+                         where conta.Id == contaId
+                         select conta).SingleOrDefault();
+            return tmpConta;
+        }
     }
 
 }
