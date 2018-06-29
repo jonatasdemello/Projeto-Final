@@ -25,8 +25,14 @@ namespace Controles
 
         public IList<Consulta> readConsultas()
         {
-            var consultas = from consulta in ctx.Consultas select consulta;
-            return consultas.ToList();
+            var consultas = (from consulta in ctx.Consultas select consulta).ToList();
+
+            //foreach (var ct in consultas)
+            //{
+            //    ct.Medico = (from medico in ctx.Medicos)
+            //}
+
+            return consultas;
         }
 
         public Consulta readConsulta(int consultaId)

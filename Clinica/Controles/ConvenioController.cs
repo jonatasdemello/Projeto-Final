@@ -30,8 +30,9 @@ namespace Controles
 
         public IList<Convenio> readConvenios()
         {
-            var convenios = from convenio in ctx.Convenios select convenio;
-            return convenios.ToList();
+            var convenios = (from convenio in ctx.Convenios select convenio).ToList();
+
+            return convenios;
         }
     }
 
