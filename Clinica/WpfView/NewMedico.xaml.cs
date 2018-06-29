@@ -71,12 +71,12 @@ namespace WpfView
                 MedicoController medicoController = new MedicoController();
                 medicoController.createMedico(medico);
 
-                MessageBox.Show("Usuário salvo com sucesso!");
+                MessageBox.Show("Médico salvo com sucesso!");
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao salvar o usuário (" + ex.Message + ")");
+                MessageBox.Show("Erro ao salvar o médico (" + ex.Message + ")");
             }
         }
 

@@ -36,5 +36,18 @@ namespace WpfView
             DataGrid dg = ((DataGrid)sender);
             Paciente pac = (Paciente)dg.Items[dg.SelectedIndex];
         }
+
+        private void dgPacientes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var currentRowIndex = dgPacientes.Items.IndexOf(dgPacientes.SelectedItem);
+            {
+                if (dgPacientes.SelectedItem != null)
+                {
+                    int pacienteId = ((Paciente)dgPacientes.SelectedItem).PacienteId;
+                    UpdatePaciente updatePaciente = new UpdatePaciente(pacienteId);
+                    updatePaciente.ShowDialog();
+                }
+            }
+        }
     }
 }

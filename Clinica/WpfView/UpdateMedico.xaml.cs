@@ -18,31 +18,85 @@ using Modelos;
 namespace WpfView
 {
     /// <summary>
-    /// Interaction logic for UpdateMedico.xaml
+    /// Interação lógica para UpdateMedico.xaml
     /// </summary>
     public partial class UpdateMedico : Window
     {
-        public UpdateMedico()
+        public UpdateMedico(int medicoId)
         {
             InitializeComponent();
+
+            Load_Medico(medicoId);
         }
+
+        private void Load_Medico(int medicoId)
+        {
+            // preencher dropdown contas
+            ContaController contas = new ContaController();
+            cbConta.ItemsSource = contas.readContas();
+
+            // preencher dropdown especialidades
+            EspecialidadeController especialidade = new EspecialidadeController();
+            cbEspecialidade.ItemsSource = especialidade.readEspecialidades();
+
+            MedicoController medicoController = new MedicoController();
+            Medico medico = medicoController.readMedico(medicoId);
+
+            txtId.Text = medico.MedicoId.ToString();
+            txtNome.Text = medico.Nome;
+            txtCRM.Text = medico.CRM;
+            txtCPF.Text = medico.CPF;
+            txtTelefone.Text = medico.Telefone;
+            txtTurno.Text = medico.Turno;
+            dpDataNascimento.SelectedDate = medico.Nascimento;
+
+            cbConta.SelectedItem = medico.conta;
+            cbEspecialidade.SelectedItem = medico.Especialidade;
+        }
+
         private void btnSalvar_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                // validar
+                if (string.IsNullOrEmpty(txtNome.Text))
+                    throw new NullReferenceException("O campo nome é obrigatório.");
+                if (string.IsNullOrEmpty(txtCRM.Text))
+                    throw new NullReferenceException("O campo CRM é obrigatório.");
+                if (string.IsNullOrEmpty(txtCPF.Text))
+                    throw new NullReferenceException("O campo CPF é obrigatório.");
+                if (string.IsNullOrEmpty(txtTelefone.Text))
+                    throw new NullReferenceException("O campo Telefone é obrigatório.");
+                if (string.IsNullOrEmpty(txtTurno.Text))
+                    throw new NullReferenceException("O campo Turno é obrigatório.");
+                if (cbConta.SelectedItem == null)
+                    throw new NullReferenceException("O campo Conta é obrigatório.");
+                if (cbEspecialidade.SelectedItem == null)
+                    throw new NullReferenceException("O campo Especialidade é obrigatório.");
+                if (dpDataNascimento.SelectedDate == null)
+                    throw new NullReferenceException("A campo Data de Nascimento é obrigatório.");
 
-                //Usuario usu = new Usuario();
+                Medico medico = new Medico();
 
-                //usu.Nome = txtNome.Text;
+                medico.MedicoId = Convert.ToInt32(txtId.Text);
+                medico.Nome = txtNome.Text;
+                medico.CRM = txtCRM.Text;
+                medico.CPF = txtCPF.Text;
+                medico.Telefone = txtTelefone.Text;
+                medico.Turno = txtTurno.Text;
+                medico.Nascimento = (DateTime)dpDataNascimento.SelectedDate;
+                medico.conta = (Conta)cbConta.SelectedItem;
+                medico.Especialidade = (Especialidade)cbEspecialidade.SelectedItem;
 
-                //UsuariosController usuariosController = new UsuariosController();
-                //usuariosController.Adicionar(usu);
+                MedicoController medicoController = new MedicoController();
+                medicoController.updateMedico(medico);
 
-                MessageBox.Show("Usuário salvo com sucesso!");
+                MessageBox.Show("Médico salvo com sucesso!");
+                this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao salvar o usuário (" + ex.Message + ")");
+                MessageBox.Show("Erro ao salvar o médico (" + ex.Message + ")");
             }
         }
 

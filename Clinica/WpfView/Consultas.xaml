@@ -10,6 +10,7 @@
         <DataGrid x:Name="dgConsultas" Margin="0,10,0,0" VerticalAlignment="Top" 
                   CanUserAddRows="False" 
                   CanUserDeleteRows="False" Height="249" 
-                  SelectionChanged="dgConsultas_SelectionChanged"/>
+                  SelectionChanged="dgConsultas_SelectionChanged"
+                  MouseDoubleClick="dgConsultas_MouseDoubleClick"/>
     </Grid>
 </Window>

@@ -37,5 +37,18 @@ namespace WpfView
             DataGrid dg = ((DataGrid)sender);
             Medico med = (Medico)dg.Items[dg.SelectedIndex];
         }
+
+        private void dgMedicos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var currentRowIndex = dgMedicos.Items.IndexOf(dgMedicos.SelectedItem);
+            {
+                if (dgMedicos.SelectedItem != null)
+                {
+                    int medicoId = ((Medico)dgMedicos.SelectedItem).MedicoId;
+                    UpdateMedico updateMedico = new UpdateMedico(medicoId);
+                    updateMedico.ShowDialog();
+                }
+            }
+        }
     }
 }

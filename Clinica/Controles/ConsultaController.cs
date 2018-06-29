@@ -23,10 +23,18 @@ namespace Controles
             ctx.SaveChanges();
         }
 
-        public IList<Consulta> readConsulta()
+        public IList<Consulta> readConsultas()
         {
             var consultas = from consulta in ctx.Consultas select consulta;
             return consultas.ToList();
+        }
+
+        public Consulta readConsulta(int consultaId)
+        {
+            var tempConsulta = from consulta in ctx.Consultas
+                            where consulta.Id == consultaId
+                            select consulta;
+            return tempConsulta.SingleOrDefault();
         }
 
         public void updateConsulta(Consulta Consulta)

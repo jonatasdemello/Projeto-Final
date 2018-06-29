@@ -42,6 +42,14 @@ namespace Controles
             }
         }
 
+        public Medico readMedico(int medicoId)
+        {
+            var tempMedico = from medico in ctx.Medicos
+                             where medico.MedicoId == medicoId
+                             select medico;
+            return tempMedico.SingleOrDefault();
+        }
+
         public IList<Medico> readMedicos()
         {
             var medicos = from medico in ctx.Medicos select medico;

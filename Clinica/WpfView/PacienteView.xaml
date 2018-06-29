@@ -11,6 +11,7 @@
         <DataGrid x:Name="dgPacientes" Margin="0,10,0,0" VerticalAlignment="Top" 
                   CanUserAddRows="False" 
                   CanUserDeleteRows="False" Height="249" 
-                  SelectionChanged="dgPacientes_SelectionChanged"/>
+                  SelectionChanged="dgPacientes_SelectionChanged"
+                  MouseDoubleClick="dgPacientes_MouseDoubleClick"/>
     </Grid>
 </Window>

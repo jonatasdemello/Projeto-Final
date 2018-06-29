@@ -39,6 +39,14 @@ namespace Controles
             return Pacientes.ToList();
         }
 
+        public Paciente readPaciente(int pacienteId)
+        {
+            var tmpPaciente = from Paciente in ctx.Pacientes
+                              where Paciente.PacienteId == pacienteId
+                              select Paciente;
+            return tmpPaciente.SingleOrDefault();
+        }
+
         public void updatePaciente(Paciente Paciente)
         {
             var tempPaciente = ctx.Pacientes.SingleOrDefault(c => c.PacienteId == Paciente.PacienteId);

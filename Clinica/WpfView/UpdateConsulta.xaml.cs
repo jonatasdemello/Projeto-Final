@@ -21,26 +21,69 @@ namespace WpfView
     /// </summary>
     public partial class UpdateConsulta : Window
     {
-        public UpdateConsulta()
+        public UpdateConsulta(int consultaId)
         {
             InitializeComponent();
+
+            Load_Consulta(consultaId);
         }
+        private void Load_Consulta(int medicoId)
+        {
+            // preencher dropdown medico
+            MedicoController medicoController = new MedicoController();
+            cbMedico.ItemsSource = medicoController.readMedicos();
+
+            // preencher dropdown paciente
+            PacienteController pacienteController = new PacienteController();
+            cbPaciente.ItemsSource = pacienteController.readPacientes();
+
+            // preencher dropdown secretaria
+            SecretariaController secretariaController = new SecretariaController();
+            cbSecretaria.ItemsSource = secretariaController.readSecretaria();
+
+            //txtId.Text = medico.MedicoId.ToString();
+            //txtNome.Text = medico.Nome;
+            //txtCRM.Text = medico.CRM;
+            //txtCPF.Text = medico.CPF;
+            //txtTelefone.Text = medico.Telefone;
+            //txtTurno.Text = medico.Turno;
+            //dpDataNascimento.SelectedDate = medico.Nascimento;
+
+            //cbConta.SelectedItem = medico.conta;
+            //cbEspecialidade.SelectedItem = medico.Especialidade;
+        }
+
         private void btnSalvar_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                //Usuario usu = new Usuario();
+                // validar
+                if (cbMedico.SelectedItem == null)
+                    throw new NullReferenceException("O campo Médico é obrigatório.");
+                if (cbPaciente.SelectedItem == null)
+                    throw new NullReferenceException("O campo Paciente é obrigatório.");
+                if (cbSecretaria.SelectedItem == null)
+                    throw new NullReferenceException("O campo Secretária é obrigatório.");
+                if (dpConsulta.SelectedDate == null)
+                    throw new NullReferenceException("A campo Data da Consulta é obrigatório.");
 
-                //usu.Nome = txtNome.Text;
+                Consulta consulta = new Consulta();
 
-                //UsuariosController usuariosController = new UsuariosController();
-                //usuariosController.Adicionar(usu);
+                consulta.Id = Convert.ToInt32(txtId.Text);
+                consulta.Medico = (Medico)cbMedico.SelectedItem;
+                consulta.Paciente = (Paciente)cbPaciente.SelectedItem;
+                consulta.Secretaria = (Secretaria)cbSecretaria.SelectedItem;
+                consulta.Hora = (DateTime)dpConsulta.SelectedDate;
 
-                MessageBox.Show("Usuário salvo com sucesso!");
+                ConsultaController consultaController = new ConsultaController();
+                consultaController.createConsulta(consulta);
+
+                MessageBox.Show("Consulta salva com sucesso!");
+                this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao salvar o usuário (" + ex.Message + ")");
+                MessageBox.Show("Erro ao salvar o consulta (" + ex.Message + ")");
             }
         }
 

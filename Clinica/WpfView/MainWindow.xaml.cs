@@ -18,7 +18,7 @@ using Modelos;
 namespace WpfView
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interação lógica para MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -39,7 +39,7 @@ namespace WpfView
         }
         private void btnUpdateMedico_Click(object sender, RoutedEventArgs e)
         {
-            UpdateMedico medico = new UpdateMedico();
+            UpdateMedico medico = new UpdateMedico(0);
             medico.ShowDialog();
         }
 
@@ -55,7 +55,7 @@ namespace WpfView
         }
         private void btnUpdateConsulta_Click(object sender, RoutedEventArgs e)
         {
-            UpdateConsulta consulta = new UpdateConsulta();
+            UpdateConsulta consulta = new UpdateConsulta(0);
             consulta.ShowDialog();
         }
 
@@ -71,7 +71,7 @@ namespace WpfView
         }
         private void btnUpdatePaciente_Click(object sender, RoutedEventArgs e)
         {
-            UpdatePaciente paciente = new UpdatePaciente();
+            UpdatePaciente paciente = new UpdatePaciente(0);
             paciente.ShowDialog();
         }
     }

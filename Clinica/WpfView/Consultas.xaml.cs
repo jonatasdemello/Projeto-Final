@@ -28,13 +28,26 @@ namespace WpfView
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ConsultaController ConsultaController = new Controles.ConsultaController();
-            dgConsultas.ItemsSource = ConsultaController.readConsulta();
+            dgConsultas.ItemsSource = ConsultaController.readConsultas();
         }
 
         private void dgConsultas_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGrid dg = ((DataGrid)sender);
             Consulta med = (Consulta)dg.Items[dg.SelectedIndex];
+        }
+
+        private void dgConsultas_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var currentRowIndex = dgConsultas.Items.IndexOf(dgConsultas.SelectedItem);
+            {
+                if (dgConsultas.SelectedItem != null)
+                {
+                    int consultaId = ((Consulta)dgConsultas.SelectedItem).Id;
+                    UpdateConsulta updateConsulta = new UpdateConsulta(consultaId);
+                    updateConsulta.ShowDialog();
+                }
+            }
         }
     }
 }

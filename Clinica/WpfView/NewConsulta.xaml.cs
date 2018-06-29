@@ -44,30 +44,33 @@ namespace WpfView
         {
             try
             {
+                // validar
+                if (cbMedico.SelectedItem == null)
+                    throw new NullReferenceException("O campo Médico é obrigatório.");
+                if (cbPaciente.SelectedItem == null)
+                    throw new NullReferenceException("O campo Paciente é obrigatório.");
+                if (cbSecretaria.SelectedItem == null)
+                    throw new NullReferenceException("O campo Secretária é obrigatório.");
                 if (dpConsulta.SelectedDate == null)
-                {
-                    MessageBox.Show("Informe a data da consulta!");
-                }
-                else
-                {
-                    Consulta consulta = new Consulta();
+                    throw new NullReferenceException("A campo Data da Consulta é obrigatório.");
 
-                    consulta.Medico = (Medico)cbMedico.SelectedItem;
-                    consulta.Paciente = (Paciente)cbPaciente.SelectedItem;
-                    consulta.Secretaria = (Secretaria)cbSecretaria.SelectedItem;
-                    consulta.Hora = (DateTime)dpConsulta.SelectedDate;
+                Consulta consulta = new Consulta();
 
-                    ConsultaController consultaController = new ConsultaController();
-                    consultaController.createConsulta(consulta);
+                consulta.Medico = (Medico)cbMedico.SelectedItem;
+                consulta.Paciente = (Paciente)cbPaciente.SelectedItem;
+                consulta.Secretaria = (Secretaria)cbSecretaria.SelectedItem;
+                consulta.Hora = (DateTime)dpConsulta.SelectedDate;
 
-                    MessageBox.Show("Consulta salva com sucesso!");
-                }
+                ConsultaController consultaController = new ConsultaController();
+                consultaController.createConsulta(consulta);
+
+                MessageBox.Show("Consulta salva com sucesso!");
+                this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao salvar o usuário (" + ex.Message + ")");
+                MessageBox.Show("Erro ao salvar o Consulta (" + ex.Message + ")");
             }
-            this.Close();
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
