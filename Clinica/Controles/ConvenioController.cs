@@ -24,8 +24,12 @@ namespace Controles
 
         public void populateConvenio()
         {
-            this.createConvenio("Unimed Premium", "Unimed", "123456");
-            this.createConvenio("Amil Standard", "Amil", "234567");
+            var convenios = (from convenio in ctx.Convenios select convenio).ToList();
+            if (convenios.Count() == 0)
+            {
+                this.createConvenio("Unimed Premium", "Unimed", "123456");
+                this.createConvenio("Amil Standard", "Amil", "234567");
+           }
         }
 
         public IList<Convenio> readConvenios()
