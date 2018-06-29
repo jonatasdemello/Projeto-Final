@@ -46,9 +46,11 @@ namespace WpfView
             Consulta consulta = consultaController.readConsulta(consultaId);
 
             txtId.Text = consulta.Id.ToString();
-            cbMedico.SelectedItem = consulta.Medico;
-            cbPaciente.SelectedItem = consulta.Paciente;
-            cbSecretaria.SelectedItem = consulta.Secretaria;
+
+            cbMedico.SelectedValue = consulta.Medico.MedicoId;
+            cbPaciente.SelectedValue = consulta.Paciente.PacienteId;
+            cbSecretaria.SelectedValue = consulta.Secretaria.SecretariaId;
+
             dpConsulta.SelectedDate = consulta.Hora;
         }
 
