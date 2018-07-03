@@ -42,7 +42,6 @@ namespace WpfView
             cbSecretaria.ItemsSource = secretariaController.readSecretaria();
 
             ConsultaController consultaController = new ConsultaController();
-
             Consulta consulta = consultaController.readConsulta(consultaId);
 
             txtId.Text = consulta.Id.ToString();
@@ -56,8 +55,8 @@ namespace WpfView
 
         private void btnSalvar_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 // validar
                 if (cbMedico.SelectedItem == null)
                     throw new NullReferenceException("O campo Médico é obrigatório.");
@@ -77,15 +76,15 @@ namespace WpfView
                 consulta.Hora = (DateTime)dpConsulta.SelectedDate;
 
                 ConsultaController consultaController = new ConsultaController();
-                consultaController.createConsulta(consulta);
+                consultaController.updateConsulta(consulta);
 
                 MessageBox.Show("Consulta salva com sucesso!");
                 this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao salvar o consulta (" + ex.Message + ")");
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Erro ao salvar o consulta (" + ex.Message + ")");
+            //}
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)

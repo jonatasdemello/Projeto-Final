@@ -13,14 +13,16 @@ namespace Controles
 
         public void createPaciente(Paciente Paciente)
         {
-            Paciente p = new Paciente();
-            p.Nome = Paciente.Nome;
-            p.Nascimento = Paciente.Nascimento;
-            p.Telefone = Paciente.Telefone;
-            p.CPF = Paciente.CPF;
-            p.Convenio = Paciente.Convenio;
+            Paciente tempPaciente = new Paciente();
+            tempPaciente.Nome = Paciente.Nome;
+            tempPaciente.Nascimento = Paciente.Nascimento;
+            tempPaciente.Telefone = Paciente.Telefone;
+            tempPaciente.CPF = Paciente.CPF;
+            tempPaciente.Convenio = Paciente.Convenio;
 
-            ctx.Pacientes.Add(p);
+            if (tempPaciente.Convenio != null) { ctx.Entry(tempPaciente.Convenio).State = System.Data.Entity.EntityState.Unchanged; }
+
+            ctx.Pacientes.Add(tempPaciente);
             ctx.SaveChanges();
         }
 
@@ -62,11 +64,15 @@ namespace Controles
         public void updatePaciente(Paciente Paciente)
         {
             var tempPaciente = ctx.Pacientes.SingleOrDefault(c => c.PacienteId == Paciente.PacienteId);
+
             tempPaciente.Nome = Paciente.Nome;
             tempPaciente.Nascimento = Paciente.Nascimento;
             tempPaciente.Telefone = Paciente.Telefone;
             tempPaciente.CPF = Paciente.CPF;
             tempPaciente.Convenio = Paciente.Convenio;
+
+            if (tempPaciente.Convenio != null) { ctx.Entry(tempPaciente.Convenio).State = System.Data.Entity.EntityState.Unchanged; }
+
             ctx.SaveChanges();
         }
     }

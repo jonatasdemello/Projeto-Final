@@ -13,23 +13,33 @@ namespace Controles
 
         public void createMedico(Medico medico)
         {
+            if (medico.conta != null) { ctx.Entry(medico.conta).State = System.Data.Entity.EntityState.Unchanged; }
+            if (medico.Especialidade != null) { ctx.Entry(medico.Especialidade).State = System.Data.Entity.EntityState.Unchanged; }
+
             ctx.Medicos.Add(medico);
             ctx.SaveChanges();
         }
 
         public void createMedico(String nome, DateTime nasc, String fone, String cpf, Conta conta, string crm, Especialidade especialidade, String turno)
         {
-            Medico m = new Medico();
-            m.Nome = nome;
-            m.Nascimento = nasc;
-            m.Telefone = fone;
-            m.CPF = cpf;
-            m.conta = conta;
-            m.CRM = crm;
-            m.Especialidade = especialidade;
-            m.Turno = turno;
+            var tempEspecialidade = ctx.Especialidades.SingleOrDefault(c => c.Id == especialidade.Id);
+            var tempConta = ctx.Contas.SingleOrDefault(c => c.Id == conta.Id);
 
-            ctx.Medicos.Add(m);
+            Medico tempMedico = new Medico();
+            tempMedico.Nome = nome;
+            tempMedico.Nascimento = nasc;
+            tempMedico.Telefone = fone;
+            tempMedico.CPF = cpf;
+            tempMedico.conta = conta;
+            tempMedico.CRM = crm;
+            tempMedico.Especialidade = especialidade;
+            tempMedico.Turno = turno;
+
+            ctx.Medicos.Add(tempMedico);
+
+            if (tempMedico.conta != null) { ctx.Entry(tempMedico.conta).State = System.Data.Entity.EntityState.Unchanged; }
+            if (tempMedico.Especialidade != null) { ctx.Entry(tempMedico.Especialidade).State = System.Data.Entity.EntityState.Unchanged; }
+
             ctx.SaveChanges();
         }
 
@@ -84,6 +94,7 @@ namespace Controles
         public void updateMedico(Medico medico)
         {
             var tempMedico = ctx.Medicos.SingleOrDefault(c => c.MedicoId == medico.MedicoId);
+
             tempMedico.Nome = medico.Nome;
             tempMedico.Nascimento = medico.Nascimento;
             tempMedico.Telefone = medico.Telefone;
@@ -92,6 +103,10 @@ namespace Controles
             tempMedico.CRM = medico.CRM;
             tempMedico.Especialidade = medico.Especialidade;
             tempMedico.Turno = medico.Turno;
+
+            if (tempMedico.conta != null) { ctx.Entry(tempMedico.conta).State = System.Data.Entity.EntityState.Unchanged; }
+            if (tempMedico.Especialidade != null) { ctx.Entry(tempMedico.Especialidade).State = System.Data.Entity.EntityState.Unchanged; }
+
             ctx.SaveChanges();
         }
     }

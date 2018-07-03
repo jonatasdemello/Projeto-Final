@@ -37,8 +37,15 @@ namespace Controles
 
         public IList<Secretaria> readSecretaria()
         {
-            var secretarias = from secretaria in ctx.Secretarias select secretaria;
-            return secretarias.ToList();
+            var secretarias = (from secretaria in ctx.Secretarias select secretaria).ToList();
+            foreach (var sc in secretarias)
+            {
+                sc.conta = (from s in ctx.Secretarias
+                            join c in ctx.Contas on s.conta.Id equals c.Id
+                            where s.SecretariaId == sc.SecretariaId
+                            select c).SingleOrDefault();
+            }
+            return secretarias;
         }
     }
 

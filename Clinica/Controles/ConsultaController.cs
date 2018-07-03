@@ -13,13 +13,17 @@ namespace Controles
 
         public void createConsulta(Consulta consulta)
         {
-            Consulta c = new Consulta();
-            c.Hora = consulta.Hora;
-            c.Medico = consulta.Medico;
-            c.Paciente = consulta.Paciente;
-            c.Secretaria = consulta.Secretaria;
+            Consulta tempConsulta = new Consulta();
+            tempConsulta.Hora = consulta.Hora;
+            tempConsulta.Medico = consulta.Medico;
+            tempConsulta.Paciente = consulta.Paciente;
+            tempConsulta.Secretaria = consulta.Secretaria;
 
-            ctx.Consultas.Add(c);
+            if (tempConsulta.Medico != null) { ctx.Entry(tempConsulta.Medico).State = System.Data.Entity.EntityState.Unchanged; }
+            if (tempConsulta.Paciente != null) { ctx.Entry(tempConsulta.Paciente).State = System.Data.Entity.EntityState.Unchanged; }
+            if (tempConsulta.Secretaria != null) { ctx.Entry(tempConsulta.Secretaria).State = System.Data.Entity.EntityState.Unchanged; }
+
+            ctx.Consultas.Add(tempConsulta);
             ctx.SaveChanges();
         }
 
@@ -75,11 +79,36 @@ namespace Controles
 
         public void updateConsulta(Consulta Consulta)
         {
+            //var tempMedico = ctx.Medicos.SingleOrDefault(c => c.MedicoId == Consulta.Medico.MedicoId);
+            //var tempPaciente = ctx.Pacientes.SingleOrDefault(c => c.PacienteId == Consulta.Paciente.PacienteId);
+            //var tempSecretaria = ctx.Secretarias.SingleOrDefault(c => c.SecretariaId == Consulta.Secretaria.SecretariaId);
+
+            //ctx.Consultas.Attach(Consulta);
+            //ctx.Entry(Consulta).State = System.Data.Entity.EntityState.Unchanged;
+
             var tempConsulta = ctx.Consultas.SingleOrDefault(c => c.Id == Consulta.Id);
+
             tempConsulta.Medico = Consulta.Medico;
             tempConsulta.Paciente = Consulta.Paciente;
             tempConsulta.Secretaria = Consulta.Secretaria;
             tempConsulta.Hora = Consulta.Hora;
+
+            if (tempConsulta.Medico != null) { ctx.Entry(tempConsulta.Medico).State = System.Data.Entity.EntityState.Unchanged; }
+            if (tempConsulta.Medico != null) { ctx.Entry(tempConsulta.Medico.conta).State = System.Data.Entity.EntityState.Unchanged; }
+            if (tempConsulta.Medico != null) { ctx.Entry(tempConsulta.Medico.Especialidade).State = System.Data.Entity.EntityState.Unchanged; }
+
+            if (tempConsulta.Paciente != null) { ctx.Entry(tempConsulta.Paciente).State = System.Data.Entity.EntityState.Unchanged; }
+            if (tempConsulta.Paciente != null) { ctx.Entry(tempConsulta.Paciente.Convenio).State = System.Data.Entity.EntityState.Unchanged; }
+
+            if (tempConsulta.Secretaria != null) { ctx.Entry(tempConsulta.Secretaria).State = System.Data.Entity.EntityState.Unchanged; }
+            if (tempConsulta.Secretaria != null) { ctx.Entry(tempConsulta.Secretaria.conta).State = System.Data.Entity.EntityState.Unchanged; }
+
+            //if (Consulta.Medico != null) { ctx.Entry(Consulta.Medico).State = System.Data.Entity.EntityState.Unchanged; }
+            //if (Consulta.Paciente != null) { ctx.Entry(Consulta.Paciente).State = System.Data.Entity.EntityState.Unchanged; }
+            //if (Consulta.Secretaria != null) { ctx.Entry(Consulta.Secretaria).State = System.Data.Entity.EntityState.Unchanged; }
+
+            //ctx.Entry(Consulta).State = System.Data.Entity.EntityState.Modified;
+
             ctx.SaveChanges();
         }
 
