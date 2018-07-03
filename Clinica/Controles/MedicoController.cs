@@ -75,18 +75,17 @@ namespace Controles
         {
             var medicos = (from medico in ctx.Medicos select medico).ToList();
 
-            foreach (var med in medicos)
-            {
-                med.conta = (from conta in ctx.Contas
-                             join medico in ctx.Medicos on conta.Id equals medico.conta.Id
-                             where medico.MedicoId == med.MedicoId
-                             select conta).SingleOrDefault();
-
-                med.Especialidade = (from especialidade in ctx.Especialidades
-                                     join medico in ctx.Medicos on especialidade.Id equals medico.Especialidade.Id
-                                     where medico.MedicoId == med.MedicoId
-                                     select especialidade).SingleOrDefault();
-            }
+            //foreach (var med in medicos)
+            //{
+            //    med.conta = (from conta in ctx.Contas
+            //                 join medico in ctx.Medicos on conta.Id equals medico.conta.Id
+            //                 where medico.MedicoId == med.MedicoId
+            //                 select conta).SingleOrDefault();
+            //    med.Especialidade = (from especialidade in ctx.Especialidades
+            //                         join medico in ctx.Medicos on especialidade.Id equals medico.Especialidade.Id
+            //                         where medico.MedicoId == med.MedicoId
+            //                         select especialidade).SingleOrDefault();
+            //}
 
             return medicos;
         }

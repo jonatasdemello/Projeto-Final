@@ -38,13 +38,13 @@ namespace Controles
         public IList<Paciente> readPacientes()
         {
             var Pacientes = (from Paciente in ctx.Pacientes select Paciente).ToList();
-            foreach (var pac in Pacientes)
-            {
-                pac.Convenio = (from pc in ctx.Pacientes
-                                join cv in ctx.Convenios on pc.Convenio.Id equals cv.Id
-                                where pc.PacienteId == pac.PacienteId
-                                select cv).SingleOrDefault();
-            }
+            //foreach (var pac in Pacientes)
+            //{
+            //    pac.Convenio = (from pc in ctx.Pacientes
+            //                    join cv in ctx.Convenios on pc.Convenio.Id equals cv.Id
+            //                    where pc.PacienteId == pac.PacienteId
+            //                    select cv).SingleOrDefault();
+            //}
             return Pacientes;
         }
 

@@ -93,15 +93,13 @@ namespace Controles
             tempConsulta.Secretaria = Consulta.Secretaria;
             tempConsulta.Hora = Consulta.Hora;
 
+            ctx.Medicos.Attach(Consulta.Medico);
+            ctx.Pacientes.Attach(Consulta.Paciente);
+            ctx.Secretarias.Attach(Consulta.Secretaria);
+
             if (tempConsulta.Medico != null) { ctx.Entry(tempConsulta.Medico).State = System.Data.Entity.EntityState.Unchanged; }
-            if (tempConsulta.Medico != null) { ctx.Entry(tempConsulta.Medico.conta).State = System.Data.Entity.EntityState.Unchanged; }
-            if (tempConsulta.Medico != null) { ctx.Entry(tempConsulta.Medico.Especialidade).State = System.Data.Entity.EntityState.Unchanged; }
-
             if (tempConsulta.Paciente != null) { ctx.Entry(tempConsulta.Paciente).State = System.Data.Entity.EntityState.Unchanged; }
-            if (tempConsulta.Paciente != null) { ctx.Entry(tempConsulta.Paciente.Convenio).State = System.Data.Entity.EntityState.Unchanged; }
-
             if (tempConsulta.Secretaria != null) { ctx.Entry(tempConsulta.Secretaria).State = System.Data.Entity.EntityState.Unchanged; }
-            if (tempConsulta.Secretaria != null) { ctx.Entry(tempConsulta.Secretaria.conta).State = System.Data.Entity.EntityState.Unchanged; }
 
             //if (Consulta.Medico != null) { ctx.Entry(Consulta.Medico).State = System.Data.Entity.EntityState.Unchanged; }
             //if (Consulta.Paciente != null) { ctx.Entry(Consulta.Paciente).State = System.Data.Entity.EntityState.Unchanged; }
